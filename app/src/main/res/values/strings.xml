@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">MovieDb</string>
+    <string name="title_home">Now Playing</string>
+    <string name="title_dashboard">Coming Soon</string>
+    <string name="title_notifications">Top Rated</string>
+    <string name="now_playing">Now Playing</string>
+    <string name="upcoming">Coming Soon</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="avenger">AVENGER</string>
+    <string name="title">Title :</string>
+    <string name="the_title">the title</string>
+    <string name="overview">Overview :</string>
+    <string name="the_overview">the overview</string>
+</resources>
