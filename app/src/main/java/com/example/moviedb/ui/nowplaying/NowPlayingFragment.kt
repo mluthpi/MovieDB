@@ -29,8 +29,6 @@ class NowPlayingFragment : Fragment() {
         intent.putExtra("KEY_ID", it.id)
         startActivity(intent)
     }
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -47,11 +45,7 @@ class NowPlayingFragment : Fragment() {
         })
 
         return root
-
-
     }
-
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

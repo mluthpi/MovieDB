@@ -20,7 +20,7 @@
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             app:strokeWidth="5dp"
-            app:strokeColor="@color/black"
+
             android:layout_margin="5dp"
             app:shapeAppearanceOverlay="@style/roundedimageview"
             android:src="@mipmap/ic_launcher"/>
