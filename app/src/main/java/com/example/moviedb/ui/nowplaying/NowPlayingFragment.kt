@@ -44,6 +44,7 @@ class NowPlayingFragment : Fragment() {
             showNowPlaying(nowPlaying)
         })
 
+
         return root
     }
 
