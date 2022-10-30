@@ -2,19 +2,19 @@ package com.example.moviedb.ui.nowplaying
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.moviedb.R
 import com.example.moviedb.data.ResultsItem
 import com.example.moviedb.databinding.FragmentNowPlayingBinding
 import com.example.moviedb.databinding.FragmentTopRatedBinding
 import com.example.moviedb.detail.DetailsActivity
+import com.example.moviedb.favorite.FavoriteActivity
 import com.example.moviedb.ui.toprated.TopRatedViewModel
 
 class NowPlayingFragment : Fragment() {
@@ -87,5 +87,21 @@ class NowPlayingFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.nav_favorite -> {
+                val intent = Intent(this.requireContext(), FavoriteActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
     }
 }

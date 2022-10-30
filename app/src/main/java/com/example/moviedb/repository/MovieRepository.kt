@@ -23,4 +23,8 @@ class MovieRepository(application: Application) {
     fun insert(movie: MovieDetailResponse) {
         executorService.execute {mMovieDao.insert(movie)}
     }
+
+    fun delete(movie: MovieDetailResponse){
+        executorService.execute {mMovieDao.delete(movie)}
+    }
 }
