@@ -2,8 +2,10 @@ package com.example.moviedb.ui.nowplaying
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
@@ -29,23 +31,16 @@ class NowPlayingFragment : Fragment() {
         intent.putExtra("KEY_ID", it.id)
         startActivity(intent)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val nowPlayingViewModel =
-            ViewModelProvider(this).get(NowPlayingViewModel::class.java)
 
         _binding = FragmentNowPlayingBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
-        nowPlayingViewModel.listNowPlaying.observe(viewLifecycleOwner, {nowPlaying ->
-            showNowPlaying(nowPlaying)
-        })
-
-
-        return root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,18 +48,20 @@ class NowPlayingFragment : Fragment() {
 
 
         nowPlayingViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()
-        ).get(NowPlayingViewModel::class.java)
+        )[NowPlayingViewModel::class.java]
 
         nowPlayingViewModel.getNowPlaying("ba7b7ec258e912a3c68b34e6dfba3ca5")
 
-
-        nowPlayingViewModel.listNowPlaying.observe(requireActivity(), {nowPlaying ->
+        Log.d("TEST_DEBUG", "NowPlayingFragment running..")
+        nowPlayingViewModel.listNowPlaying.observe(requireActivity()) { nowPlaying ->
+            Log.d("TEST_DEBUG", "listNowPlaying.observe running..")
             showNowPlaying(nowPlaying)
-        })
+            Log.d("TEST_DEBUG", "nowPlaying: ${nowPlaying.size}")
+        }
 
-        nowPlayingViewModel.isLoading.observe(requireActivity(), {isLoading ->
+        nowPlayingViewModel.isLoading.observe(requireActivity()) { isLoading ->
             showLoading(isLoading)
-        })
+        }
 
 
     }
@@ -94,14 +91,5 @@ class NowPlayingFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
-            R.id.nav_favorite -> {
-                val intent = Intent(this.requireContext(), FavoriteActivity::class.java)
-                startActivity(intent)
-                return true
-            }
-            else -> return super.onOptionsItemSelected(item)
-        }
-    }
+
 }

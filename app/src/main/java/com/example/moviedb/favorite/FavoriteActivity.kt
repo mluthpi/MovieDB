@@ -4,12 +4,16 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatViewInflater
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviedb.R
+import com.example.moviedb.ViewModelFactory
 import com.example.moviedb.data.ResultsItem
 import com.example.moviedb.databinding.ActivityFavoriteBinding
 import com.example.moviedb.detail.DetailsActivity
+import com.example.moviedb.model.MovieEntity
 
 class FavoriteActivity : AppCompatActivity() {
 
@@ -28,10 +32,17 @@ class FavoriteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityFavoriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setupViewModel()
+        favoriteViewModel.getFavoriteMovie().observe(this,{showFavoriteMovie(it)})
+
     }
 
+    private fun setupViewModel() {
+        favoriteViewModel = obtainViewModel(this)
+    }
 
-    private fun showFavoriteMovie(favMovieList: List<ResultsItem>) {
+    private fun showFavoriteMovie(favMovieList: List<MovieEntity>) {
         if (favMovieList.isNotEmpty()) {
             favoriteAdapter.addItems(favMovieList)
             binding.rvFavorite.visibility = View.VISIBLE
@@ -46,5 +57,10 @@ class FavoriteActivity : AppCompatActivity() {
         } else {
             binding.rvFavorite.visibility = View.GONE
         }
+    }
+
+    private fun obtainViewModel(activity: AppCompatActivity): FavoriteViewModel {
+        val factory = ViewModelFactory.getInstance(activity.application)
+        return ViewModelProvider(activity, factory).get(FavoriteViewModel::class.java)
     }
 }

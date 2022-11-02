@@ -24,6 +24,7 @@ class NowPlayingViewModel : ViewModel() {
     val isLoading: LiveData<Boolean> = _isLoading
 
     fun getNowPlaying(apiKey: String) {
+        Log.d("TEST_DEBUG", "getNowPlaying VM")
         _isLoading.value = true
         val client = ApiConfig.getApiRest().getMovie(apiKey)
         client.enqueue(object : Callback<MovieResponse>{
@@ -31,14 +32,18 @@ class NowPlayingViewModel : ViewModel() {
                 _isLoading.value = false
                 if (response.isSuccessful) {
                     _listNowPlaying.value = (response.body()?.results?: emptyList()) as List<ResultsItem>?
+                    Log.d("TEST_DEBUG", "onSuccess running... data size")
                 } else {
                     _listNowPlaying.value = emptyList()
                     Log.e(TAG, "onResponse: ${response.message()}")}
-                }
+                Log.d("TEST_DEBUG", "onSuccess not success running... data size")
+
+            }
 
             override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
                 _isLoading.value = false
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
+                Log.d("TEST_DEBUG", "onFailure, msg: ${t.message}")
             }
         })
     }

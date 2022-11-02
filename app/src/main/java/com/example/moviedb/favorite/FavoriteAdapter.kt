@@ -6,13 +6,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviedb.data.ResultsItem
 import com.example.moviedb.databinding.ListMovieBinding
+import com.example.moviedb.model.MovieEntity
 
-class FavoriteAdapter(private val onItemClick: (item: ResultsItem) -> Unit) :
+class FavoriteAdapter(private val onItemClick: (item: MovieEntity) -> Unit) :
     RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
 
-    private val movieItemList = mutableListOf<ResultsItem>()
+    private val movieItemList = mutableListOf<MovieEntity>()
 
-    fun addItems(movieItemList: List<ResultsItem>) {
+    fun addItems(movieItemList: List<MovieEntity>) {
         this.movieItemList.clear()
         this.movieItemList.addAll(movieItemList)
         notifyDataSetChanged()
@@ -21,7 +22,7 @@ class FavoriteAdapter(private val onItemClick: (item: ResultsItem) -> Unit) :
 
         class ViewHolder(private val binding: ListMovieBinding) : RecyclerView.ViewHolder(binding.root) {
 
-            fun bind(movieItem: ResultsItem) {
+            fun bind(movieItem: MovieEntity) {
                 with(binding) {
                     Glide.with(binding.root)
                         .load("https://image.tmdb.org/t/p/original${movieItem.posterPath}")

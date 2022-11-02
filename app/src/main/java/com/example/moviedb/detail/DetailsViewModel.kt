@@ -1,16 +1,21 @@
 package com.example.moviedb.detail
 
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.moviedb.data.MovieDetailResponse
+import com.example.moviedb.data.ResultsItem
+import com.example.moviedb.model.MovieEntity
 import com.example.moviedb.network.ApiConfig
+import com.example.moviedb.repository.MovieRepository
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailsViewModel : ViewModel() {
+class DetailsViewModel(application: Application) : ViewModel() {
+    private val mMovieRepository: MovieRepository = MovieRepository(application)
 
     companion object {
         private const val TAG = "DetailsViewModel"
@@ -44,5 +49,13 @@ class DetailsViewModel : ViewModel() {
             }
         })
     }
+
+    fun insertToDB(movie: MovieEntity) {
+        mMovieRepository.insert(movie)
+    }
+    fun deleteToDB(movie: MovieEntity) {
+        mMovieRepository.delete(movie)
+    }
+    fun getFavoriteMovie() : LiveData<List<MovieEntity>> = mMovieRepository.getAllMovie()
 
 }
