@@ -34,39 +34,19 @@ class DetailsActivity : AppCompatActivity() {
 
         detailsViewModel = obtainViewModel(this)
         detailsViewModel.getDetailMovie(id)
-        detailsViewModel.detailsMovie.observe(this, {movieDetails ->
+        detailsViewModel.detailsMovie.observe(this, { movieDetails ->
             showMovieDetail(movieDetails)
         })
-        detailsViewModel.isLoading.observe(this, {isLoading ->
+        detailsViewModel.isLoading.observe(this, { isLoading ->
             showLoading(isLoading)
         })
+
+        val actionBar = supportActionBar
+        actionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
 
 
-//    private fun getMovieDetails(id: Int) {
-//        ApiConfig.getApiRest().getDetailsMovie(id = id, "ba7b7ec258e912a3c68b34e6dfba3ca5")
-//            .enqueue(object : Callback<MovieDetailResponse> {
-//                override fun onResponse(
-//                    call: Call<MovieDetailResponse>,
-//                    response: Response<MovieDetailResponse>
-//                ) {
-//                    val movie = response.body()
-//                    if (movie != null) {
-//                        binding.titleValue.text = movie.title
-//                        binding.overviewValue.text = movie.overview
-//                        binding.ratingValue.text = movie.voteAverage.toString().substring(0,3)
-//                        Glide.with(this@DetailsActivity)
-//                            .load("https://image.tmdb.org/t/p/original${movie.posterPath}")
-//                            .into(binding.imgDetails)
-//                    }
-//                }
-//
-//                override fun onFailure(call: Call<MovieDetailResponse>, t: Throwable) {
-//
-//                }
-//            })
-//    }
 
     private fun showMovieDetail(movieDetailResponse : MovieDetailResponse) {
         Glide.with(this)
@@ -90,6 +70,7 @@ class DetailsActivity : AppCompatActivity() {
                 val movie = MovieEntity (
                     id = movie.id,
                     title = movie.title,
+                    overview = movie.overview,
                     posterPath = movie.posterPath
                         )
                 detailsViewModel.deleteToDB(movie)
@@ -102,6 +83,7 @@ class DetailsActivity : AppCompatActivity() {
                 val movie = MovieEntity (
                     id = movie.id,
                     title = movie.title,
+                    overview = movie.overview,
                     posterPath = movie.posterPath
                         )
                 detailsViewModel.insertToDB(movie)
@@ -118,6 +100,11 @@ class DetailsActivity : AppCompatActivity() {
     private fun obtainViewModel(activity: AppCompatActivity): DetailsViewModel {
         val factory = ViewModelFactory.getInstance(activity.application)
         return ViewModelProvider(activity, factory).get(DetailsViewModel::class.java)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
 }

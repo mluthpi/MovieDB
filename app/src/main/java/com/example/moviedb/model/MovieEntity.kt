@@ -13,5 +13,7 @@ data class MovieEntity (
 
     var title: String? = null,
 
+    var overview: String? = null,
+
     var posterPath: String? = null
         )
