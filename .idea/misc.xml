@@ -5,7 +5,7 @@
       <map>
         <entry key="..\:/dicoding/MovieDb/app/src/main/res/drawable/ic_favorite.xml" value="0.109" />
         <entry key="..\:/dicoding/MovieDb/app/src/main/res/drawable/ic_now_playing.xml" value="0.109" />
-        <entry key="..\:/dicoding/MovieDb/app/src/main/res/layout/activity_details.xml" value="0.22" />
+        <entry key="..\:/dicoding/MovieDb/app/src/main/res/layout/activity_details.xml" value="0.2" />
         <entry key="..\:/dicoding/MovieDb/app/src/main/res/layout/activity_favorite.xml" value="0.2" />
         <entry key="..\:/dicoding/MovieDb/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/dicoding/MovieDb/app/src/main/res/layout/fragment_home.xml" value="0.17777777777777778" />
@@ -13,6 +13,7 @@
         <entry key="..\:/dicoding/MovieDb/app/src/main/res/layout/fragment_top_rated.xml" value="0.2" />
         <entry key="..\:/dicoding/MovieDb/app/src/main/res/layout/fragment_upcoming.xml" value="0.25" />
         <entry key="..\:/dicoding/MovieDb/app/src/main/res/layout/list_movie.xml" value="0.25" />
+        <entry key="..\:/dicoding/MovieDb/app/src/main/res/layout/list_related_movie.xml" value="0.2" />
         <entry key="..\:/dicoding/MovieDb/app/src/main/res/menu/bottom_nav_menu.xml" value="0.18425925925925926" />
         <entry key="..\:/dicoding/MovieDb/app/src/main/res/menu/main_menu.xml" value="0.19895833333333332" />
       </map>

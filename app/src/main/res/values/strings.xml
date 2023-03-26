@@ -9,6 +9,6 @@
     <string name="avenger">AVENGER</string>
     <string name="title">Title :</string>
     <string name="the_title">the title</string>
-    <string name="overview">Overview :</string>
-    <string name="the_overview">the overview</string>
+    <string name="overview">Overview</string>
+    <string name="the_overview">Overview value</string>
 </resources>

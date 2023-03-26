@@ -3,6 +3,7 @@ package com.example.moviedb.network
 import android.graphics.Movie
 import com.example.moviedb.data.MovieDetailResponse
 import com.example.moviedb.data.MovieResponse
+import com.example.moviedb.data.RelatedMovieResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -19,6 +20,12 @@ interface ApiRest {
 
     @GET("movie/top_rated")
     fun getTopRated(@Query("api_key") apiKey: String) : Call<MovieResponse>
+
+    @GET("movie/{movie_id}/similar")
+    fun getSimilar(
+        @Path("movie_id") id : Int,
+        @Query("api_key") apiKey: String
+    ) : Call<RelatedMovieResponse>
 
     @GET("movie/{movie_id}")
     fun getDetailsMovie (
